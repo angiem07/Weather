@@ -1,0 +1,145 @@
+:root {
+    --darkText: #262626;
+    --lightText: white;
+    --asideBackground: #f2f2f2;
+    --borderColor: #e6e6e6;
+    --buttonColor: #3C5BFE;
+    --buttonColorHover: #8FCAFF;
+    font-family: 'Roboto', sans-serif;
+    color: var(--darkText);
+}
+
+body {
+    margin: 0;
+}
+
+h1 {
+    background: var(--darkText);
+    padding: 1%;
+    text-align: center;
+    color: var(--lightText);
+}
+
+aside {
+    float: left;
+    background: var(--asideBackground);
+    width: 20%;
+    min-height: 100vh;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+aside h3 {
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+#searchBox {
+    width: 100%;
+    height: 30px;
+    border: var(--borderColor) 1px solid;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+#searchBox:focus {
+    outline: none;
+    border: var(--buttonColorHover) 1px solid;
+}
+
+#searchButton {
+    background: var(--buttonColor);
+    border: var(--buttonColor) 2.5px solid;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 27px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+#searchedCities {
+    background: var(--lightText);
+    height: 408px;
+    border: var(--borderColor) 1px solid;
+    border-radius: 5px;
+    overflow-y: auto;
+}
+
+.searchedCity {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 25px;
+    border-bottom: var(--borderColor) 1px solid;
+    cursor: pointer;
+}
+
+.searchedCity:last-child {
+    border-bottom: none;
+}
+
+main {
+    float: left;
+    width: 75%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+#weatherToday {
+    margin: 15px;
+    width: 100%;
+    padding: 15px;
+    border: var(--borderColor) 1px solid;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+#currentIcon {
+    position: absolute;
+    top: 25px;
+}
+
+#currentUVIndex {
+    background: var(--asideBackground);
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: var(--lightText);
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+#weatherForecast {
+    margin: 15px;
+    width: 100%;
+    border: var(--lightText) 1px solid;
+    border-radius: 5px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+#dateContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.dateBox {
+    background: var(--buttonColor);
+    width: calc(20% - 10px);
+    min-height: 175px;
+    border-radius: 5px;
+    padding-left: 10px;
+    color: var(--lightText);
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.weatherEmoji {
+    padding-left: 10px;
+}

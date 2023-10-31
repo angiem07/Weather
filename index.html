@@ -3,9 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Weather</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Below links for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+    <aside>
+        <h3>Search for a City Name:</h3>
+        <form id="searchField">
+            <input type="text" id="searchBox" placeholder="Enter city">
+            <input type="submit" id="searchButton" value="🔍">
+        </form>
+        <div id="searchedCities" class="searched-cities"></div>
+    </aside>
+    <main>
+        <div id="weatherToday">
+            <h2><span id="currentCity">Search for a city to get started!</span> (<span id="currentDate">Today's Date</span>) <img src="./assets/images/placeholder.png" width="50" height="50" id="currentIcon"></h2>
+            <p>Temperature: <span id="currentTemperature">—</span>°F</p>
+            <p>Humidity: <span id="currentHumidity">—</span>%</p>
+            <p>Wind Speed: <span id="currentWind">—</span> MPH</p>
+            <!-- <p>UV Index: <span id="currentUVIndex">—</span></p> -->
+        </div>
+        <div id="weatherForecast">
+            <h3>5-Day Forecast</h3>
+            <div id="dateContainer" class="date-container">
+                <!-- Day 1 -->
+                <div class="date-box" id="day1">
+                    <h4>Date 1</h4>
+                    <p class="weatherEmoji"><img src="./assets/images/placeholder.png" alt="placeholder image"></p>
+                    <p>Temp: <span id="day1Temp">--</span>°F</p>
+                    <p>Humidity: <span id="day1Humidity">--</span>%</p>
+                </div>
+                <!-- Day 2 -->
+                <div class="date-box" id="day2">
+                    <h4>Date 2</h4>
+                    <p class="weatherEmoji"><img src="./assets/images/placeholder.png" alt="placeholder image"></p>
+                    <p>Temp: <span id="day2Temp">--</span>°F</p>
+                    <p>Humidity: <span id="day2Humidity">--</span>%</p>
+                </div>
+                <!-- Day 3 -->
+                <div class="date-box" id="day3">
+                    <h4>Date 3</h4>
+                    <p class="weatherEmoji"><img src="./assets/images/placeholder.png" alt="placeholder image"></p>
+                    <p>Temp: <span id="day3Temp">--</span>°F</p>
+                    <p>Humidity: <span id="day3Humidity">--</span>%</p>
+                </div>
+                <!-- Day 4 -->
+                <div class="date-box" id="day4">
+                    <h4>Date 4</h4>
+                    <p class="weatherEmoji"><img src="./assets/images/placeholder.png" alt="placeholder image"></p>
+                    <p>Temp: <span id="day4Temp">--</span>°F</p>
+                    <p>Humidity: <span id="day4Humidity">--</span>%</p>
+                </div>
+                <!-- Day 5 -->
+                <div class="date-box" id="day5">
+                    <h4>Date 5</h4>
+                    <p class="weatherEmoji"><img src="./assets/images/placeholder.png" alt="placeholder image"></p>
+                    <p>Temp: <span id="day5Temp">--</span>°F</p>
+                    <p>Humidity: <span id="day5Humidity">--</span>%</p>
+                </div>
+        </div>
+    </main>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
