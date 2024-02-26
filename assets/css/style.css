@@ -128,15 +128,36 @@ main {
 }
 
 .dateBox {
-    background: var(--buttonColor);
-    width: 150px;
-    height: 175px;
+    width: calc(20% - 20px);
+    margin: 10px;
+    border: var(--borderColor) 1px solid;
     border-radius: 5px;
-    padding-left: 10px;
-    color: var(--lightText);
-    margin-right: 30px;
+}
+
+.dateBox h4 {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.dateBox p {
+    margin-left: 10px;
+    margin-bottom: 5px;
 }
 
 .weatherEmoji {
-    padding-left: 10px;
+    text-align: center;
+}
+
+img {
+    vertical-align: middle;
+}
+
+@media (max-width: 900px) {
+    aside {
+        width: 30%;
+    }
+
+    main {
+        width: 70%;
+    }
 }

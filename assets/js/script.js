@@ -12,9 +12,7 @@ var city2 = document.querySelector("#city2");
 var city3 = document.querySelector("#city3");
 var city4 = document.querySelector("#city4");
 var city5 = document.querySelector("#city5");
-var city6 = document.querySelector("#city6");
-var city7 = document.querySelector("#city7");
-var city8 = document.querySelector("#city8");
+
 
 var currentCity = document.querySelector("#currentCity");
 var currentDate = document.querySelector("#currentDate");
@@ -69,7 +67,7 @@ searchBar.addEventListener("click", function() {
 });
 
 // Clicking on a previously searched city recalls that search
-for(let i = 0; i < cities.length; i++) {
+for (let i = 0; i < cities.length; i++) {
     cities[i].addEventListener("click", function(event) {
         newSearchCity = event.target.innerHTML;
         newSearch();
@@ -93,10 +91,10 @@ function newSearch() {
                         searchedCities.shift();
                     }
                 }
-            
+
                 searchBar.value = "";
                 searchBar.placeholder = "";
-            
+
                 storeSearchedCities();
                 updateSearchedCities();
             }
@@ -105,6 +103,10 @@ function newSearch() {
                 searchBar.value = "";
                 searchBar.placeholder = "Please enter a valid city";
             }
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            searchBar.placeholder = "Failed to fetch weather data. Please try again.";
         });
 }
 
@@ -122,35 +124,14 @@ function updateSearchedCities() {
         searchedCities = storedSearchedCities;
 
         // Populate search history aside and change cursor on hover
-        city1.innerHTML = searchedCities[searchedCities.length - 1];
-        city1.classList.add("hoverPointer");
-        if (searchedCities.length - 2 >= 0) {
-            city2.innerHTML = searchedCities[searchedCities.length - 2];
-            city2.classList.add("hoverPointer");
-        }
-        if (searchedCities.length - 3 >= 0) {
-            city3.innerHTML = searchedCities[searchedCities.length - 3];
-            city3.classList.add("hoverPointer");
-        }
-        if (searchedCities.length - 4 >= 0) {
-            city4.innerHTML = searchedCities[searchedCities.length - 4];
-            city4.classList.add("hoverPointer");
-        }
-        if (searchedCities.length - 5 >= 0) {
-            city5.innerHTML = searchedCities[searchedCities.length - 5];
-            city5.classList.add("hoverPointer");
-        }
-        if (searchedCities.length - 6 >= 0) {
-            city6.innerHTML = searchedCities[searchedCities.length - 6];
-            city6.classList.add("hoverPointer");
-        }
-        if (searchedCities.length - 7 >= 0) {
-            city7.innerHTML = searchedCities[searchedCities.length - 7];
-            city7.classList.add("hoverPointer");
-        }
-        if (searchedCities.length - 8 >= 0) {
-            city8.innerHTML = searchedCities[searchedCities.length - 8];
-            city8.classList.add("hoverPointer");
+        for (let i = 0; i < cities.length; i++) {
+            if (i < searchedCities.length) {
+                cities[i].innerHTML = searchedCities[i];
+                cities[i].classList.add("hoverPointer");
+            } else {
+                cities[i].innerHTML = "";
+                cities[i].classList.remove("hoverPointer");
+            }
         }
 
         var currentWeatherURL;
@@ -165,13 +146,13 @@ function updateSearchedCities() {
             currentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCities[searchedCities.length - 1]}&units=imperial&appid=${apiKey}`;
         }
 
-        // Main API call
+        // Main API call for current weather
         fetch(currentWeatherURL)
             .then(response => response.json())
             .then(function (data) {
-                // Populate weatherToday fields
-                const fetchedCurrentDate = new Date(data.dt*1000);
-                currentDate.innerHTML = fetchedCurrentDate.toLocaleDateString();
+                // Populate current weather fields
+                const currentDateObj = new Date(data.dt * 1000);
+                currentDate.innerHTML = currentDateObj.toLocaleDateString();
                 currentIcon.src = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
                 currentTemperature.innerHTML = data.main.temp;
                 currentHumidity.innerHTML = data.main.humidity;
@@ -179,40 +160,38 @@ function updateSearchedCities() {
                 currentLat = data.coord.lat;
                 currentLon = data.coord.lon;
 
-        
-                        // Populate weatherForecast fields
-                const fetchedDay1Date = new Date(data.daily[1].dt*1000);
-                day1.innerHTML = fetchedDay1Date.toLocaleDateString();
-                day1Icon.src = `https://openweathermap.org/img/w/${data.daily[1].weather[0].icon}.png`;
-                day1Temp.innerHTML = data.daily[1].temp.day;
-                day1Humidity.innerHTML = data.daily[1].humidity;
+                // Fetch 5-day forecast data
+                const forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${currentCity.innerHTML}&units=imperial&appid=${apiKey}`;
 
-                const fetchedDay2Date = new Date(data.daily[2].dt*1000);
-                day2.innerHTML = fetchedDay2Date.toLocaleDateString();
-                day2Icon.src = `https://openweathermap.org/img/w/${data.daily[2].weather[0].icon}.png`;
-                day2Temp.innerHTML = data.daily[2].temp.day;
-                day2Humidity.innerHTML = data.daily[2].humidity;
+                fetch(forecastURL)
+                    .then(response => response.json())
+                    .then(function (forecastData) {
+                        // Populate 5-day forecast fields
+                        const dailyForecasts = forecastData.list.filter(entry => entry.dt_txt.includes("12:00:00"));
+                        for (let i = 0; i < 5; i++) {
+                            const forecast = dailyForecasts[i];
+                            const date = new Date(forecast.dt * 1000);
+                            const dayElement = document.getElementById(`day${i + 1}`);
+                            const iconElement = document.getElementById(`day${i + 1}Icon`);
+                            const tempElement = document.getElementById(`day${i + 1}Temp`);
+                            const humidityElement = document.getElementById(`day${i + 1}Humidity`);
 
-                const fetchedDay3Date = new Date(data.daily[3].dt*1000);
-                day3.innerHTML = fetchedDay3Date.toLocaleDateString();
-                day3Icon.src = `https://openweathermap.org/img/w/${data.daily[3].weather[0].icon}.png`;
-                day3Temp.innerHTML = data.daily[3].temp.day;
-                day3Humidity.innerHTML = data.daily[3].humidity;
-                        
-                const fetchedDay4Date = new Date(data.daily[4].dt*1000);
-                day4.innerHTML = fetchedDay4Date.toLocaleDateString();
-                day4Icon.src = `https://openweathermap.org/img/w/${data.daily[4].weather[0].icon}.png`;
-                day4Temp.innerHTML = data.daily[4].temp.day;
-                day4Humidity.innerHTML = data.daily[4].humidity;
-
-                const fetchedDay5Date = new Date(data.daily[5].dt*1000);
-                day5.innerHTML = fetchedDay5Date.toLocaleDateString();
-                day5Icon.src = `https://openweathermap.org/img/w/${data.daily[5].weather[0].icon}.png`;
-                day5Temp.innerHTML = data.daily[5].temp.day;
-                day5Humidity.innerHTML = data.daily[5].humidity;
-                });
-            };
+                            dayElement.innerHTML = date.toLocaleDateString();
+                            iconElement.src = `https://openweathermap.org/img/w/${forecast.weather[0].icon}.png`;
+                            tempElement.innerHTML = forecast.main.temp;
+                            humidityElement.innerHTML = forecast.main.humidity;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching forecast data:', error);
+                    });
+            })
+            .catch(error => {
+                console.error('Error fetching weather data:', error);
+            });
     }
+}
+
 
 // Renders previously saved searches on page load
 updateSearchedCities();
