@@ -15,10 +15,10 @@ To search for a city enter a name into the search bar, then you'll be able to se
 References: \
 https://elisesamanthadaly.github.io/06-Server-Side-APIs/ \
 https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Introduction \
-https://openweathermap.org/forecast5 \
+https://openweathermap.org/forecast5 
 
 
-Debug:
+Debug: \
 ChatGPT
 
 
