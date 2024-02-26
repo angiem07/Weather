@@ -10,10 +10,11 @@
 }
 
 body {
-    margin: 0;
+    margin: 0 auto;
 }
 
 h1 {
+    margin: 0 auto;
     background: var(--darkText);
     padding: 1%;
     text-align: center;
@@ -24,27 +25,24 @@ aside {
     float: left;
     background: var(--asideBackground);
     width: 20%;
-    min-height: 100vh;
+    height: 100vh;
     padding: 10px;
-    box-sizing: border-box;
 }
 
 aside h3 {
-    margin: 0;
+    margin: 0 auto;
     margin-bottom: 5px;
 }
 
-#searchBox {
-    width: 100%;
+#searchBar {
+    width: 200px;
     height: 30px;
     border: var(--borderColor) 1px solid;
     border-radius: 5px;
     margin-bottom: 15px;
-    padding: 5px;
-    box-sizing: border-box;
 }
 
-#searchBox:focus {
+#searchBar:focus {
     outline: none;
     border: var(--buttonColorHover) 1px solid;
 }
@@ -56,7 +54,15 @@ aside h3 {
     text-align: center;
     line-height: 27px;
     margin-bottom: 15px;
+}
+
+#searchButton:hover {
     cursor: pointer;
+    border: var(--buttonColorHover) 2.5px solid;
+}
+
+#searchButton:focus {
+    outline: none;
 }
 
 #searchedCities {
@@ -64,38 +70,37 @@ aside h3 {
     height: 408px;
     border: var(--borderColor) 1px solid;
     border-radius: 5px;
-    overflow-y: auto;
 }
 
 .searchedCity {
     height: 50px;
+    padding-left: 25px;
     line-height: 50px;
-    padding: 0 25px;
     border-bottom: var(--borderColor) 1px solid;
-    cursor: pointer;
 }
 
-.searchedCity:last-child {
+#city8 {
     border-bottom: none;
+}
+
+.hoverPointer {
+    cursor: pointer;
 }
 
 main {
     float: left;
     width: 75%;
-    min-height: 100vh;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
+    height: 100vh;
 }
 
 #weatherToday {
     margin: 15px;
     width: 100%;
     padding: 15px;
+    padding-left: 25px;
     border: var(--borderColor) 1px solid;
     border-radius: 5px;
     position: relative;
-    overflow: hidden;
 }
 
 #currentIcon {
@@ -108,36 +113,28 @@ main {
     padding: 5px 10px;
     border-radius: 5px;
     color: var(--lightText);
-    position: absolute;
-    right: 10px;
-    top: 10px;
 }
 
 #weatherForecast {
     margin: 15px;
     width: 100%;
     border: var(--lightText) 1px solid;
-    border-radius: 5px;
-    padding: 15px;
-    box-sizing: border-box;
 }
 
 #dateContainer {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: left;
 }
 
 .dateBox {
     background: var(--buttonColor);
-    width: calc(20% - 10px);
-    min-height: 175px;
+    width: 150px;
+    height: 175px;
     border-radius: 5px;
     padding-left: 10px;
     color: var(--lightText);
-    margin-bottom: 10px;
-    box-sizing: border-box;
-    position: relative;
+    margin-right: 30px;
 }
 
 .weatherEmoji {
