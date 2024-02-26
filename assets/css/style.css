@@ -79,9 +79,7 @@ aside h3 {
     border-bottom: var(--borderColor) 1px solid;
 }
 
-#city8 {
-    border-bottom: none;
-}
+
 
 .hoverPointer {
     cursor: pointer;
@@ -106,13 +104,6 @@ main {
 #currentIcon {
     position: absolute;
     top: 25px;
-}
-
-#currentUVIndex {
-    background: var(--asideBackground);
-    padding: 5px 10px;
-    border-radius: 5px;
-    color: var(--lightText);
 }
 
 #weatherForecast {
